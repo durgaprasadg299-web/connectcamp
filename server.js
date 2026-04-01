@@ -24,10 +24,6 @@ app.use(cors({
   credentials: true
 }));
 
-// Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 // Routes
 app.get("/", (req, res) => {
   res.send("Backend is running");
@@ -40,8 +36,12 @@ app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/venues', require('./routes/venueRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 
-// Serve frontend for root
-app.get('/', (req, res) => {
+// Set static folder (after API routes)
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Catch all handler: send back index.html for client-side routing
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
