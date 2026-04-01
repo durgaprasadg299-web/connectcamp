@@ -1,4 +1,4 @@
-const API_URL = 'https://<YOUR_RENDER_BACKEND_URL>/api';
+const API_URL = 'https://eventmanagement-backend-4ar7.onrender.com/api';
 
 async function fetchAPI(endpoint, method = 'GET', body = null, token = null) {
     const headers = {
