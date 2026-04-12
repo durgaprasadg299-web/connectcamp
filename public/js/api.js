@@ -1,4 +1,7 @@
-const API_URL = 'http://localhost:5000/api';
+// API URL - dynamically set based on environment
+const API_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:5000/api'
+    : 'https://connectcamp-backend.onrender.com/'; // Replace with your actual Render backend URL
 
 async function fetchAPI(endpoint, method = 'GET', body = null, token = null) {
     const headers = {
