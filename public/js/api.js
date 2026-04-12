@@ -1,7 +1,7 @@
 // API URL - dynamically set based on environment
 const API_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:5000/api'
-    : 'https://connectcamp-backend.onrender.com/'; // Replace with your actual Render backend URL
+    : 'https://connectcamp-backend.onrender.com/api'; // Backend API base URL
 
 async function fetchAPI(endpoint, method = 'GET', body = null, token = null) {
     const headers = {
@@ -40,3 +40,9 @@ async function fetchAPI(endpoint, method = 'GET', body = null, token = null) {
 function getToken() {
     return localStorage.getItem('token');
 }
+
+app.use(cors({
+  origin: ["http://localhost:3000", "https://your-frontend-url.netlify.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
