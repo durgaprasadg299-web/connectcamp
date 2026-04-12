@@ -87,10 +87,26 @@
         function toggleDescription() {
             const role = document.getElementById('role').value;
             const descGroup = document.getElementById('descGroup');
+            const collegeSelect = document.getElementById('college');
+
             if (role === 'club') {
                 descGroup.style.display = 'block';
+                // For club organizers, only show VVIT
+                collegeSelect.innerHTML = '<option value="VVIT">VVIT</option>';
+                collegeSelect.value = 'VVIT';
             } else {
                 descGroup.style.display = 'none';
+                // For students, show all colleges
+                collegeSelect.innerHTML = `
+                    <option value="">Select College</option>
+                    <option value="VVIT">VVIT</option>
+                    <option value="SRM">SRM</option>
+                    <option value="VIT">VIT</option>
+                    <option value="IIT">IIT</option>
+                    <option value="NIT">NIT</option>
+                    <option value="Other">Other</option>
+                `;
+                collegeSelect.value = '';
             }
         }
 

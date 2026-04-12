@@ -79,10 +79,6 @@
                         <div id="step1" class="form-step">
                             <h4 style="margin-bottom: 15px; color: var(--primary-color);">Personal Information</h4>
                             <div style="display: grid; gap: 15px;">
-                                <input type="text" name="name" id="regName" class="form-control"
-                                    placeholder="Full Name *" required>
-                                <input type="email" name="email" id="regEmail" class="form-control"
-                                    placeholder="Email Address *" required>
                                 <input type="tel" name="phone" id="regPhone" class="form-control"
                                     placeholder="Phone Number *" required pattern="[0-9]{10}">
                             </div>
@@ -328,8 +324,6 @@
 
                     // Pre-fill form
                     if (user) {
-                        document.getElementById('regName').value = user.name || '';
-                        document.getElementById('regEmail').value = user.email || '';
                         document.getElementById('regCollege').value = user.college || '';
                     }
                 }

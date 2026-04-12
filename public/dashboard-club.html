@@ -106,48 +106,40 @@
     </header>
 
     <div class="container main-content-with-sidebar" style="padding: 40px 20px;">
+        <div class="glass-card" style="margin-bottom: 30px; padding: 25px; display: grid; gap: 18px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap: 15px;">
+                <div>
+                    <h2 style="margin: 0;">Club Organizer Profile</h2>
+                    <p style="margin: 8px 0 0; color: var(--text-muted);">Your name, email, branch, and year of study.</p>
+                </div>
+                <button class="btn btn-outline" onclick="openClubProfileModal()" style="min-width: 160px;">Edit Profile</button>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+                <div style="padding: 18px; background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border); border-radius: 16px;">
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.85rem;">Name</p>
+                    <p id="profileName" style="margin: 8px 0 0; font-weight: 600;">Loading...</p>
+                </div>
+                <div style="padding: 18px; background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border); border-radius: 16px;">
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.85rem;">Email</p>
+                    <p id="profileEmail" style="margin: 8px 0 0; font-weight: 600;">Loading...</p>
+                </div>
+                <div style="padding: 18px; background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border); border-radius: 16px;">
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.85rem;">Branch</p>
+                    <p id="profileBranch" style="margin: 8px 0 0; font-weight: 600;">Loading...</p>
+                </div>
+                <div style="padding: 18px; background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border); border-radius: 16px;">
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.85rem;">Year</p>
+                    <p id="profileYear" style="margin: 8px 0 0; font-weight: 600;">Loading...</p>
+                </div>
+            </div>
+        </div>
+
         <h2>My Events</h2>
 
         <div id="loading" style="text-align: center; margin-top: 50px;">Loading your events...</div>
         <div id="eventsGrid" class="event-grid"
             style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
             <!-- Events will be loaded here -->
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 50px 0;">
-
-        <h2>Book a Venue</h2>
-        <div id="venuesGrid"
-            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;">
-            <!-- Venues loaded here -->
-        </div>
-    </div>
-
-    <!-- Slots View Modal -->
-    <div id="bookingModal" class="modal"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
-        <div class="glass-card" style="width: 100%; max-width: 500px; padding: 30px; position: relative;">
-            <button onclick="closeModal()"
-                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">&times;</button>
-            <h3>View Slots: <span id="modalVenueName"></span></h3>
-
-            <form id="bookingForm" onsubmit="event.preventDefault();"
-                style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
-                <input type="hidden" id="bookingVenueId" name="venueId">
-
-                <!-- Date Selection -->
-                <div class="form-group">
-                    <label>Select Date</label>
-                    <input type="date" id="bookingDate" class="form-control" required
-                        style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; border-radius: 8px;">
-                </div>
-
-                <!-- Slots Display -->
-                <div id="slotsContainer"
-                    style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; min-height: 50px; text-align: center;">
-                    <!-- Populated by JS -->
-                </div>
-            </form>
         </div>
     </div>
 
@@ -174,14 +166,125 @@
         </div>
     </div>
 
+    <!-- Club Profile Edit Modal -->
+    <div id="profileModal" class="modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="glass-card" style="width: 100%; max-width: 500px; padding: 30px; position: relative;">
+            <button onclick="closeClubProfileModal()"
+                style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            <h3>Edit Club Organizer Profile</h3>
+            <form id="clubProfileForm" onsubmit="updateClubProfile(event)" style="display:flex; flex-direction:column; gap:15px; margin-top:20px;">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="editProfileName" class="form-control" required
+                        style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; border-radius: 8px;">
+                </div>
+                <div class="form-group">
+                    <label>Email (read-only)</label>
+                    <input type="email" id="editProfileEmail" class="form-control" disabled
+                        style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; border-radius: 8px;">
+                </div>
+                <div class="form-group">
+                    <label>Branch</label>
+                    <input type="text" id="editProfileBranch" class="form-control"
+                        style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; border-radius: 8px;">
+                </div>
+                <div class="form-group">
+                    <label>Year</label>
+                    <select id="editProfileYear" class="form-control"
+                        style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; border-radius: 8px;">
+                        <option value="N/A">N/A</option>
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                        <option value="4th Year">4th Year</option>
+                    </select>
+                </div>
+                <div style="display:flex; gap: 12px; flex-wrap: wrap;">
+                    <button type="button" onclick="closeClubProfileModal()" class="btn btn-outline" style="flex:1;">Cancel</button>
+                    <button type="submit" class="btn" style="flex:1;">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="js/api.js"></script>
     <script>
-        const user = JSON.parse(localStorage.getItem('user'));
+        let user = JSON.parse(localStorage.getItem('user'));
         if (!user || user.role !== 'club') {
             window.location.href = 'login.html';
         }
-        document.getElementById('userName').textContent = user.name;
-        document.getElementById('headerAvatar').textContent = user.name.charAt(0).toUpperCase();
+
+        async function loadClubProfile() {
+            try {
+                const profile = await fetchAPI('/auth/me', 'GET', null, getToken());
+                user = profile;
+                localStorage.setItem('user', JSON.stringify(profile));
+                renderClubProfile(profile);
+            } catch (error) {
+                console.error('Unable to load profile:', error);
+                window.location.href = 'login.html';
+            }
+        }
+
+        function renderClubProfile(profileData) {
+            const profile = profileData || user;
+            document.getElementById('userName').textContent = profile.name;
+            document.getElementById('headerAvatar').textContent = profile.name.charAt(0).toUpperCase();
+            document.getElementById('profileName').textContent = profile.name || 'Not set';
+            document.getElementById('profileEmail').textContent = profile.email || 'Not set';
+            document.getElementById('profileBranch').textContent = profile.branch || 'Not set';
+            document.getElementById('profileYear').textContent = profile.year || 'N/A';
+        }
+
+        function openClubProfileModal() {
+            document.getElementById('profileModal').style.display = 'flex';
+            document.getElementById('editProfileName').value = user.name || '';
+            document.getElementById('editProfileEmail').value = user.email || '';
+            document.getElementById('editProfileBranch').value = user.branch || '';
+            document.getElementById('editProfileYear').value = user.year || 'N/A';
+        }
+
+        function closeClubProfileModal() {
+            document.getElementById('profileModal').style.display = 'none';
+        }
+
+        async function updateClubProfile(event) {
+            event.preventDefault();
+            try {
+                const name = document.getElementById('editProfileName').value.trim();
+                const branch = document.getElementById('editProfileBranch').value.trim();
+                const year = document.getElementById('editProfileYear').value;
+
+                if (!name) {
+                    alert('Name is required.');
+                    return;
+                }
+
+                const profileData = {
+                    name,
+                    branch,
+                    year,
+                };
+
+                const updatedUser = await fetchAPI('/auth/profile', 'PUT', profileData, getToken());
+                user.name = updatedUser.name;
+                user.branch = updatedUser.branch;
+                user.year = updatedUser.year;
+                if (updatedUser.token) {
+                    localStorage.setItem('token', updatedUser.token);
+                }
+                localStorage.setItem('user', JSON.stringify(user));
+                renderClubProfile(user);
+                closeClubProfileModal();
+                alert('Profile updated successfully.');
+            } catch (error) {
+                console.error('Profile update error:', error);
+                alert(error.message || 'Unable to update profile.');
+            }
+        }
+
+        loadClubProfile();
 
         function logout() {
             localStorage.clear();
@@ -289,91 +392,6 @@
         }
 
         loadMyEvents();
-
-        // --- VENUE BOOKING ---
-        async function loadVenues() {
-            try {
-                const venues = await fetchAPI('/venues', 'GET', null, getToken());
-                const grid = document.getElementById('venuesGrid');
-
-                grid.innerHTML = venues.map((v, index) => `
-                    <div class="glass-card card-reveal hover-elevate" style="position: relative; overflow: hidden; animation-delay: ${index * 0.1}s;">
-                        <div class="${v.isBooked ? 'status-busy' : 'status-available'}" style="position: absolute; top: 15px; right: 15px; width: 15px; height: 15px; border-radius: 50%;"></div>
-                        
-                        <h3>${v.name}</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px;">${v.type} | Cap: ${v.capacity}</p>
-                        <p style="color: var(--text-muted); font-size: 0.9rem;">${v.location}</p>
-                        
-                        ${v.isBooked ? `
-                            <div style="margin-top: 15px; font-size: 0.8rem; color: #e74c3c; background: rgba(231, 76, 60, 0.1); padding: 5px; border-radius: 4px;">
-                                Booked until ${new Date(v.currentBooking.endTime).toLocaleTimeString()}
-                            </div>
-                        ` : ''}
-
-                        <button onclick="openBookingModal('${v._id}', '${v.name}')" class="btn btn-outline" style="width: 100%; margin-top: 15px;">View Slots</button>
-                    </div>
-                `).join('');
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        function openBookingModal(id, name) {
-            document.getElementById('bookingModal').style.display = 'flex';
-            document.getElementById('bookingVenueId').value = id;
-            document.getElementById('modalVenueName').textContent = name;
-
-            // Set default date to today and load slots
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('bookingDate').value = today;
-            loadSlots(id, today);
-        }
-
-        async function loadSlots(venueId, date) {
-            const slotsContainer = document.getElementById('slotsContainer');
-            slotsContainer.innerHTML = '<p style="color:var(--text-muted); font-size:0.9rem;">Loading slots...</p>';
-
-            try {
-                const slots = await fetchAPI(`/venues/${venueId}/slots/${date}`, 'GET', null, getToken());
-                const availableSlots = slots.filter(s => s.available);
-
-                if (availableSlots.length === 0) {
-                    slotsContainer.innerHTML = '<p style="color:#e74c3c; font-size:0.9rem;">No slots available for this date.</p>';
-                } else {
-                    const formatTime = (time24) => {
-                        const [hours, minutes] = time24.split(':');
-                        const hour = parseInt(hours);
-                        return `${hour % 12 || 12}:${minutes} ${hour >= 12 ? 'PM' : 'AM'}`;
-                    };
-                    
-                    slotsContainer.innerHTML = `
-                        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:10px;">Available Slots:</p>
-                        <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content: center;">
-                            ${availableSlots.map(s => `
-                                <div style="background:rgba(46, 204, 113, 0.2); color:#2ecc71; padding:8px 12px; border-radius:6px; font-size:0.85rem; border:1px solid rgba(46, 204, 113, 0.5);">
-                                    ${formatTime(s.startTime)} - ${formatTime(s.endTime)}
-                                </div>
-                            `).join('')}
-                        </div>
-                    `;
-                }
-            } catch (error) {
-                slotsContainer.innerHTML = '<p style="color:#e74c3c;">Error loading slots.</p>';
-            }
-        }
-
-        document.getElementById('bookingDate').addEventListener('change', (e) => {
-            const venueId = document.getElementById('bookingVenueId').value;
-            loadSlots(venueId, e.target.value);
-        });
-
-        function closeModal() {
-            document.getElementById('bookingModal').style.display = 'none';
-            document.getElementById('bookingForm').reset();
-            document.getElementById('slotsContainer').innerHTML = '';
-        }
-
-        loadVenues();
 
         // Sidebar toggle for mobile
         function toggleSidebar() {

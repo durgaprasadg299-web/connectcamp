@@ -24,6 +24,16 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please add your college name']
     },
+    // For Admin & Students
+    branch: {
+        type: String,
+        default: null
+    },
+    year: {
+        type: String,
+        enum: ['1st Year', '2nd Year', '3rd Year', '4th Year', 'N/A', 'Administrative'],
+        default: 'N/A'
+    },
     // For Clubs
     description: {
         type: String
@@ -31,6 +41,15 @@ const userSchema = new mongoose.Schema({
     verified: {
         type: Boolean,
         default: false
+    },
+    // Password Reset Fields
+    resetPasswordToken: {
+        type: String,
+        default: null
+    },
+    resetPasswordExpires: {
+        type: Date,
+        default: null
     },
     createdAt: {
         type: Date,

@@ -117,6 +117,7 @@ eventSchema.statics.checkVenueConflict = async function (venueId, date, startTim
     }
 
     const existingEvents = await this.find(query);
+    const now = new Date();
 
     // Check for time overlaps
     for (const event of existingEvents) {
@@ -127,6 +128,11 @@ eventSchema.statics.checkVenueConflict = async function (venueId, date, startTim
             existingEnd = new Date(`${dateStr}T${event.endTime}`);
         } else {
             existingEnd = new Date(existingStart.getTime() + 3 * 60 * 60 * 1000); // +3 hours default
+        }
+
+        // Ignore events that have already completed
+        if (existingEnd <= now) {
+            continue;
         }
 
         // Check if times overlap: new start < existing end AND new end > existing start

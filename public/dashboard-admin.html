@@ -96,6 +96,42 @@
             <h2>System Overview</h2>
             <p style="color: var(--text-muted); margin-top: 10px;">Here is a summary of the current system status.</p>
             
+            <!-- Admin Profile Section -->
+            <div class="glass-card" id="adminProfileCard" style="margin-top: 25px; padding: 25px; border-left: 4px solid #667eea; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 30px; flex: 1;">
+                    <div style="font-size: 3rem; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; color: white; font-weight: bold;">
+                        <span id="adminInitial">A</span>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="color: white; margin: 0 0 15px 0; font-size: 1.3rem;">
+                            <span id="adminName">Administrator</span>
+                            <span style="background: #667eea; padding: 2px 8px; font-size: 0.7rem; border-radius: 4px; margin-left: 10px;">Admin</span>
+                        </h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div>
+                                <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Email</p>
+                                <p style="color: white; font-weight: 500; margin: 5px 0 0 0;" id="adminEmail">admin@campus.com</p>
+                            </div>
+                            <div>
+                                <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">College</p>
+                                <p style="color: white; font-weight: 500; margin: 5px 0 0 0;" id="adminCollege">Campus Connect</p>
+                            </div>
+                            <div>
+                                <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Branch</p>
+                                <p style="color: white; font-weight: 500; margin: 5px 0 0 0;" id="adminBranch">Administration</p>
+                            </div>
+                            <div>
+                                <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Year</p>
+                                <p style="color: white; font-weight: 500; margin: 5px 0 0 0;" id="adminYear">N/A</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-outline" onclick="openEditProfileModal()" style="white-space: nowrap; margin-left: 20px;">
+                    <i class="fas fa-edit"></i> Edit Profile
+                </button>
+            </div>
+            
             <div id="dashboardStatsLoading" style="margin-top: 20px;">Loading statistics...</div>
             
             <div id="dashboardStats" style="display: none; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
@@ -188,12 +224,110 @@
         </div>
     </div>
 
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="glass-card" style="padding: 30px; max-width: 500px; width: 90%; margin: 0 20px;">
+            <h3 style="margin-top: 0; color: white;">Edit Admin Profile</h3>
+            <form id="editProfileForm" style="display: grid; gap: 15px;">
+                <div class="form-group">
+                    <label style="color: var(--text-muted); font-size: 0.9rem;">Full Name</label>
+                    <input type="text" id="editName" class="form-control" required style="width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; border-radius: 5px;">
+                </div>
+                <div class="form-group">
+                    <label style="color: var(--text-muted); font-size: 0.9rem;">College</label>
+                    <input type="text" id="editCollege" class="form-control" required style="width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; border-radius: 5px;">
+                </div>
+                <div class="form-group">
+                    <label style="color: var(--text-muted); font-size: 0.9rem;">Branch</label>
+                    <input type="text" id="editBranch" class="form-control" style="width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; border-radius: 5px;" placeholder="e.g., Administration, IT, etc.">
+                </div>
+                <div class="form-group">
+                    <label style="color: var(--text-muted); font-size: 0.9rem;">Year</label>
+                    <select id="editYear" class="form-control" style="width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; border-radius: 5px;">
+                        <option value="N/A">N/A</option>
+                        <option value="Administrative">Administrative</option>
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                        <option value="4th Year">4th Year</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="submit" class="btn" style="flex: 1;">Save Changes</button>
+                    <button type="button" class="btn btn-outline" onclick="closeEditProfileModal()" style="flex: 1;">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="js/api.js"></script>
     <script>
         const user = JSON.parse(localStorage.getItem('user'));
         if (!user || user.role !== 'admin') {
             window.location.href = 'login.html';
         }
+
+        // Load Admin Profile
+        async function loadAdminProfile() {
+            try {
+                const adminData = await fetchAPI('/auth/me', 'GET', null, getToken());
+                
+                // Update profile card
+                document.getElementById('adminName').textContent = adminData.name;
+                document.getElementById('adminInitial').textContent = adminData.name.charAt(0).toUpperCase();
+                document.getElementById('adminEmail').textContent = adminData.email;
+                document.getElementById('adminCollege').textContent = adminData.college;
+                document.getElementById('adminBranch').textContent = adminData.branch || 'Administration';
+                document.getElementById('adminYear').textContent = adminData.year || 'N/A';
+            } catch (error) {
+                console.error('Error loading admin profile:', error);
+            }
+        }
+
+        // Open Edit Profile Modal
+        function openEditProfileModal() {
+            try {
+                const name = document.getElementById('adminName').textContent;
+                const college = document.getElementById('adminCollege').textContent;
+                const branch = document.getElementById('adminBranch').textContent;
+                const year = document.getElementById('adminYear').textContent;
+
+                document.getElementById('editName').value = name;
+                document.getElementById('editCollege').value = college;
+                document.getElementById('editBranch').value = branch === 'Administration' ? '' : branch;
+                document.getElementById('editYear').value = year === 'N/A' ? 'N/A' : year;
+
+                document.getElementById('editProfileModal').style.display = 'flex';
+            } catch (error) {
+                console.error('Error opening modal:', error);
+            }
+        }
+
+        // Close Edit Profile Modal
+        function closeEditProfileModal() {
+            document.getElementById('editProfileModal').style.display = 'none';
+        }
+
+        // Save Profile Changes
+        document.getElementById('editProfileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const profileData = {
+                name: document.getElementById('editName').value,
+                college: document.getElementById('editCollege').value,
+                branch: document.getElementById('editBranch').value || 'Administration',
+                year: document.getElementById('editYear').value
+            };
+
+            try {
+                await fetchAPI('/auth/profile', 'PUT', profileData, getToken());
+                alert('Profile updated successfully!');
+                closeEditProfileModal();
+                loadAdminProfile();
+            } catch (error) {
+                alert('Error updating profile: ' + error.message);
+            }
+        });
 
         function logout() {
             localStorage.clear();
@@ -281,6 +415,8 @@
                             <th style="padding: 10px;">Name</th>
                             <th style="padding: 10px;">Role</th>
                             <th style="padding: 10px;">College</th>
+                            <th style="padding: 10px;">Branch</th>
+                            <th style="padding: 10px;">Year</th>
                             <th style="padding: 10px;">Status</th>
                             <th style="padding: 10px;">Action</th>
                         </tr>
@@ -291,6 +427,8 @@
                             <td style="padding: 10px;">${u.name}</td>
                             <td style="padding: 10px;">${u.role}</td>
                             <td style="padding: 10px;">${u.college}</td>
+                            <td style="padding: 10px;">${u.branch || '-'}</td>
+                            <td style="padding: 10px;">${u.year || '-'}</td>
                             <td style="padding: 10px;">${u.role === 'club' ? (u.verified ? 'Verified' : 'Pending') : '-'}</td>
                             <td style="padding: 10px;">
                                 ${u.role === 'club' && !u.verified ? `<button onclick="verifyClub('${u._id}')" class="btn" style="padding: 5px 10px; font-size: 0.8rem;">Verify</button>` : ''}
@@ -383,6 +521,7 @@
         loadDashboardStats();
         loadVenues();
         loadAllEvents();
+        loadAdminProfile();
         document.getElementById('addVenueForm').addEventListener('submit', createVenue);
 
         // Sidebar toggle for mobile
