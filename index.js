@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const path = require('path');
-const connectDB = require('../config/db');
+const connectDB = require('./config/db');
 
 // Load env vars
 dotenv.config();
@@ -11,7 +11,7 @@ dotenv.config();
 connectDB();
 
 // Start background jobs
-require('../jobs/eventLifecycle');
+require('./jobs/eventLifecycle');
 
 const app = express();
 
@@ -28,17 +28,17 @@ app.use(cors({
 app.get("/", (req, res) => {
   res.send("Backend is running");
 });
-app.use('/api/auth', require('../routes/authRoutes'));
-app.use('/api/events', require('../routes/eventRoutes'));
-app.use('/api/admin', require('../routes/adminRoutes'));
-app.use('/api/features', require('../routes/featureRoutes'));
-app.use('/api/users', require('../routes/userRoutes'));
-app.use('/api/venues', require('../routes/venueRoutes'));
-app.use('/api/notifications', require('../routes/notificationRoutes'));
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/events', require('./routes/eventRoutes'));
+app.use('/api/admin', require('./routes/adminRoutes'));
+app.use('/api/features', require('./routes/featureRoutes'));
+app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/venues', require('./routes/venueRoutes'));
+app.use('/api/notifications', require('./routes/notificationRoutes'));
 
 // Set static folder (after API routes)
-app.use(express.static(path.join(__dirname, '../public')));
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Catch all handler: send back index.html for client-side routing
 app.use((req, res, next) => {
