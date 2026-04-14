@@ -367,7 +367,7 @@
                     options.body = JSON.stringify({ passkey });
                 }
 
-                const res = await fetch(`/api/events/${id}`, options);
+                const res = await fetch(`https://connectcamp.onrender.com/api/events/${id}`, options);
                 const data = await res.json();
 
                 if (!res.ok) {
