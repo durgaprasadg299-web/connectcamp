@@ -363,19 +363,19 @@ router.delete('/:id', protect, async (req, res) => {
         const event = await Event.findById(req.params.id);
 
         if (!event) {
-            return res.status(404).json({ message: 'Event not found' });
+            return res.status(404).json({ success: false, message: 'Event not found' });
         }
 
         // Check ownership
         if (event.organizer.toString() !== req.user.id && req.user.role !== 'admin') {
-            return res.status(403).json({ message: 'Not authorized to delete this event' });
+            return res.status(403).json({ success: false, message: 'Not authorized to delete this event' });
         }
 
         await event.deleteOne();
-        res.json({ message: 'Event removed' });
+        res.status(200).json({ success: true, message: 'Event deleted successfully' });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Server Error' });
+        console.error('Delete event error:', error);
+        res.status(500).json({ success: false, message: 'Server Error', error: error.message });
     }
 });
 
