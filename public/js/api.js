@@ -40,9 +40,3 @@ async function fetchAPI(endpoint, method = 'GET', body = null, token = null) {
 function getToken() {
     return localStorage.getItem('token');
 }
-
-app.use(cors({
-  origin: ["http://localhost:3000", "https://your-frontend-url.netlify.app"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
