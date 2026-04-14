@@ -371,6 +371,21 @@ router.delete('/:id', protect, async (req, res) => {
             return res.status(403).json({ success: false, message: 'Not authorized to delete this event' });
         }
 
+        // Verify passkey if venue exists
+        if (event.venue) {
+            const { passkey } = req.body;
+            const venue = await Venue.findById(event.venue).select('+bookingPasskey');
+
+            if (!venue) {
+                return res.status(404).json({ success: false, message: 'Venue not found' });
+            }
+
+            // Check if passkey is required and matches
+            if (venue.bookingPasskey && venue.bookingPasskey !== passkey) {
+                return res.status(401).json({ success: false, message: 'Invalid venue passkey' });
+            }
+        }
+
         await event.deleteOne();
         res.status(200).json({ success: true, message: 'Event deleted successfully' });
     } catch (error) {
