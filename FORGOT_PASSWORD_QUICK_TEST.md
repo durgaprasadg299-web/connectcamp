@@ -23,7 +23,7 @@
 ### **Step 1: Update .env File**
 Add these lines to your `.env`:
 ```
-CLIENT_URL=http://localhost:3000
+CLIENT_URL=https://connectcamp.onrender.com/
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASSWORD=your-app-password
 ```
@@ -45,12 +45,12 @@ Then update the `sendPasswordResetEmail` function in `routes/authRoutes.js` with
 ### **Test Scenario 1: Request Password Reset (No Email Setup)**
 
 **Steps:**
-1. Open `http://localhost:3000/login.html`
+1. Open `https://connectcamp.onrender.com//login.html`
 2. Click "Forgot Password?" link
 3. Enter a registered email address (e.g., test@example.com if you have this user)
 4. Click "Send Reset Link"
 5. **Check Terminal/Console Output**
-   - Look for: `Password Reset Link: http://localhost:3000/reset-password?token=...&email=...`
+   - Look for: `Password Reset Link: https://connectcamp.onrender.com//reset-password?token=...&email=...`
 6. **Copy the full URL from console**
 
 **Expected Result:**
@@ -213,7 +213,7 @@ curl -X POST https://connectcamp.onrender.com/api/auth/reset-password \
 â”‚  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜    â”‚
 â”‚                                                             â”‚
 â”‚  (In console:) Password Reset Link:                         â”‚
-â”‚  http://localhost:3000/reset-password?token=abc123&email...â”‚
+â”‚  https://connectcamp.onrender.com//reset-password?token=abc123&email...â”‚
 â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
                   â”‚
         Copy link from console
@@ -300,4 +300,5 @@ curl -X POST https://connectcamp.onrender.com/api/auth/reset-password \
 ---
 
 **Happy Testing! ðŸš€**
+
 

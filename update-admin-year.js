@@ -4,7 +4,7 @@ const User = require('./models/User');
 async function updateAdminYear() {
     try {
         // Connect to MongoDB using the same method as the app
-        await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/event_management');
+        await mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://sujitha6302:suji1401@cluster0.xxy7wzv.mongodb.net/campus_connect_lite');
 
         console.log('Connected to MongoDB');
 
@@ -60,3 +60,4 @@ async function updateAdminYear() {
 }
 
 updateAdminYear();
+

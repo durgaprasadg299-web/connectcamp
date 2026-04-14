@@ -14,7 +14,7 @@ const crypto = require('crypto');
 
 // Email sending function (basic version - logs to console):
 const sendPasswordResetEmail = async (email, resetToken) => {
-  const resetLink = `${process.env.CLIENT_URL || 'http://localhost:3000'}/reset-password?token=${resetToken}&email=${email}`;
+  const resetLink = `${process.env.CLIENT_URL || 'https://connectcamp.onrender.com/'}/reset-password?token=${resetToken}&email=${email}`;
   console.log(`Password Reset Link: ${resetLink}`);
   return resetLink;
 };
@@ -278,7 +278,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendPasswordResetEmail = async (email, resetToken) => {
-  const resetLink = `${process.env.CLIENT_URL || 'http://localhost:3000'}/reset-password?token=${resetToken}&email=${email}`;
+  const resetLink = `${process.env.CLIENT_URL || 'https://connectcamp.onrender.com/'}/reset-password?token=${resetToken}&email=${email}`;
   
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -319,7 +319,7 @@ resetPasswordExpires: {
  */
 
 // For testing (console logs):
-CLIENT_URL=http://localhost:3000
+CLIENT_URL=https://connectcamp.onrender.com/
 
 // For production (Gmail):
 EMAIL_USER=your-email@gmail.com
@@ -479,4 +479,5 @@ CLIENT_URL=https://yourdomain.com
  * THAT'S IT! Ready to use!
  * ============================================================================
  */
+
 

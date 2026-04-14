@@ -13,7 +13,7 @@
  * 
  * EMAIL_USER=your-email@gmail.com
  * EMAIL_PASSWORD=your-app-password
- * CLIENT_URL=http://localhost:3000
+ * CLIENT_URL=https://connectcamp.onrender.com/
  * 
  * For Gmail:
  * 1. Go to: https://myaccount.google.com/apppasswords
@@ -39,7 +39,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendPasswordResetEmail = async (email, resetToken) => {
-  const resetLink = `${process.env.CLIENT_URL || 'http://localhost:3000'}/reset-password?token=${resetToken}&email=${email}`;
+  const resetLink = `${process.env.CLIENT_URL || 'https://connectcamp.onrender.com/'}/reset-password?token=${resetToken}&email=${email}`;
   
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -242,4 +242,5 @@ await Notification.create({
  *    - Clears reset token
  *    - Returns success message
  */
+
 

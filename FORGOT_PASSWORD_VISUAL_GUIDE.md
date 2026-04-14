@@ -60,7 +60,7 @@
         â”‚
         â”‚ Token logged to server console:
         â”‚ "Password Reset Link: 
-        â”‚  http://localhost:3000/reset-password?
+        â”‚  https://connectcamp.onrender.com//reset-password?
         â”‚  token=abc123def456...&
         â”‚  email=user@university.edu"
         â”‚
@@ -483,4 +483,5 @@ CLIENT                                  SERVER                              DATA
 ---
 
 **This visual guide helps understand the complete password reset flow from start to finish!**
+
 

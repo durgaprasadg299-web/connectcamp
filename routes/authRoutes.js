@@ -23,7 +23,7 @@ const isValidEmail = (email) => {
 const sendPasswordResetEmail = async (email, resetToken) => {
     // In production, use nodemailer to send actual emails
     // For now, log the reset link
-    const resetLink = `${process.env.CLIENT_URL || 'http://localhost:3000'}/reset-password?token=${resetToken}&email=${email}`;
+    const resetLink = `${process.env.CLIENT_URL || 'https://connectcamp.onrender.com/'}/reset-password?token=${resetToken}&email=${email}`;
     console.log(`Password Reset Link: ${resetLink}`);
     
     // TODO: Implement actual email sending with nodemailer
@@ -298,4 +298,5 @@ router.post('/verify-reset-token', async (req, res) => {
 });
 
 module.exports = router;
+
 

@@ -526,3 +526,4 @@ router.get('/:id/attendees', protect, async (req, res) => {
 
 module.exports = router;
 
+

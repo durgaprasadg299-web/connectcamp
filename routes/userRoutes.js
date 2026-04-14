@@ -20,3 +20,4 @@ router.get('/registrations', protect, async (req, res) => {
 
 module.exports = router;
 
+

@@ -58,3 +58,4 @@ router.post('/analyze-space', protect, authorize('club'), upload.single('image')
 
 module.exports = router;
 
+

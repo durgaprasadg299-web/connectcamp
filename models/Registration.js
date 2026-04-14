@@ -71,3 +71,4 @@ registrationSchema.methods.generateQRCode = async function () {
 module.exports = mongoose.model('Registration', registrationSchema);
 
 
+

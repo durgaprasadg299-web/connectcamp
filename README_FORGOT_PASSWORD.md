@@ -99,7 +99,7 @@ User Model (models/User.js) now includes:
 The User model has been updated. No migration needed - new fields will be null for existing users.
 
 ### **Step 2: Test the Feature**
-Go to `http://localhost:3000/login.html` â†’ Click "Forgot Password?" â†’ Follow the flow
+Go to `https://connectcamp.onrender.com//login.html` â†’ Click "Forgot Password?" â†’ Follow the flow
 
 ### **Step 3: Set Up Email (Optional)**
 For production, run: `npm install nodemailer`
@@ -111,12 +111,12 @@ See `FORGOT_PASSWORD_IMPLEMENTATION.js` for email setup code.
 
 ### **Without Email Setup (For Testing Now):**
 
-1. **Go to login page**: `http://localhost:3000/login.html`
+1. **Go to login page**: `https://connectcamp.onrender.com//login.html`
 2. **Click "Forgot Password?"** 
 3. **Enter a registered email**
 4. **Check console/terminal** for reset link like:
    ```
-   Password Reset Link: http://localhost:3000/reset-password?token=abc123def456&email=user@example.com
+   Password Reset Link: https://connectcamp.onrender.com//reset-password?token=abc123def456&email=user@example.com
    ```
 5. **Copy the link** and paste in browser
 6. **Follow the reset form** (password strength meter included)
@@ -403,4 +403,5 @@ The complete forgot password feature is ready to use. Start with the testing gui
 **Last Updated:** April 12, 2026
 **Status:** âœ… Production Ready
 **Test Coverage:** Full user flow tested
+
 

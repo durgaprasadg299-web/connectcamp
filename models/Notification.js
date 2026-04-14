@@ -59,3 +59,4 @@ notificationSchema.statics.markAllAsRead = async function (userId) {
 
 module.exports = mongoose.model('Notification', notificationSchema);
 
+

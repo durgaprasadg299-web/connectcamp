@@ -227,3 +227,4 @@ router.get('/bookings/my', protect, async (req, res) => {
 
 module.exports = router;
 
+

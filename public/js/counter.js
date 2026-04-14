@@ -72,3 +72,4 @@ if (document.readyState === 'loading') {
 window.animateCounter = animateCounter;
 window.initCounters = initCounters;
 
+

@@ -20,3 +20,4 @@
 - "Verified" status for clubs is required for some logic but currently loose in the UI to allow easy testing.
 - AI Analyzer is a simulation.
 
+

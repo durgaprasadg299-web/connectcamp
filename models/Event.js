@@ -211,3 +211,4 @@ eventSchema.methods.updateStatus = async function () {
 
 module.exports = mongoose.model('Event', eventSchema);
 
+

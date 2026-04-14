@@ -44,3 +44,4 @@ bookingSchema.statics.checkOverlap = async function (venueId, startTime, endTime
 
 module.exports = mongoose.model('Booking', bookingSchema);
 
+

@@ -164,7 +164,7 @@ const transporter = nodemailer.createTransport({
 
 // Updated email function
 const sendPasswordResetEmail = async (email, resetToken) => {
-  const resetLink = `${process.env.CLIENT_URL || 'http://localhost:3000'}/reset-password?token=${resetToken}&email=${email}`;
+  const resetLink = `${process.env.CLIENT_URL || 'https://connectcamp.onrender.com/'}/reset-password?token=${resetToken}&email=${email}`;
   
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -197,7 +197,7 @@ const sendPasswordResetEmail = async (email, resetToken) => {
 ```
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASSWORD=your-app-password
-CLIENT_URL=http://localhost:3000
+CLIENT_URL=https://connectcamp.onrender.com/
 ```
 
 ### Environment Variables Setup
@@ -211,7 +211,7 @@ EMAIL_PASSWORD=your-app-specific-password
 EMAIL_SERVICE=gmail
 
 # Frontend URL (for email links)
-CLIENT_URL=http://localhost:3000 # or your production URL
+CLIENT_URL=https://connectcamp.onrender.com/ # or your production URL
 ```
 
 **Note:** For Gmail:
@@ -361,4 +361,5 @@ await Notification.create({
 - Reset tokens are stored as SHA256 hashes for security
 - Email sending is currently logged to console in development mode
 - All endpoints have proper error handling and validation
+
 

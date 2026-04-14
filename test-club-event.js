@@ -102,3 +102,4 @@ testClubEventCreation().then(() => {
     process.exit(0);
 });
 
+
