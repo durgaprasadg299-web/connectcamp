@@ -484,7 +484,7 @@
             }
 
             try {
-                const result = await fetch('http://localhost:5000/api/events', {
+                const result = await fetch('https://connectcamp-backend.onrender.com/api/events', {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${getToken()}`
