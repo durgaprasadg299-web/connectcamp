@@ -1,4 +1,4 @@
-# Running Campus Connect Lite
+﻿# Running Campus Connect Lite
 
 1. Open Terminal.
 2. Navigate to project folder: `cd c:/Users/yaswa/OneDrive/Documents/23bq1a05e0/e2e`
@@ -9,7 +9,7 @@
    node server.js
    ```
    (Or `npm start` if script is set up, but `node server.js` is direct)
-6. Open Browser to `http://localhost:5000`
+6. Open Browser to `https://connectcamp.onrender.com`
 
 ## Features
 - **Student**: Sign up, Login, View Events, Register, Comment.
@@ -19,3 +19,4 @@
 ## Notes
 - "Verified" status for clubs is required for some logic but currently loose in the UI to allow easy testing.
 - AI Analyzer is a simulation.
+

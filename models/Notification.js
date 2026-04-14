@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+﻿const mongoose = require('mongoose');
 
 const notificationSchema = new mongoose.Schema({
     user: {
@@ -58,3 +58,4 @@ notificationSchema.statics.markAllAsRead = async function (userId) {
 };
 
 module.exports = mongoose.model('Notification', notificationSchema);
+

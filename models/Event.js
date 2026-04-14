@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+﻿const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
     title: {
@@ -210,3 +210,4 @@ eventSchema.methods.updateStatus = async function () {
 };
 
 module.exports = mongoose.model('Event', eventSchema);
+

@@ -1,4 +1,4 @@
-// Check if logged in and redirect if needed
+﻿// Check if logged in and redirect if needed
 document.addEventListener('DOMContentLoaded', () => {
     const token = getToken();
     const userRole = localStorage.getItem('role');
@@ -40,3 +40,4 @@ function goHome() {
 function showToast(message, type = 'info') {
     alert(message);
 }
+

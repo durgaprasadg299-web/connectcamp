@@ -1,4 +1,4 @@
-class Calendar {
+﻿class Calendar {
     constructor(elementId, events = []) {
         this.element = document.getElementById(elementId);
         this.events = events;
@@ -90,3 +90,4 @@ class Calendar {
         this.render();
     }
 }
+

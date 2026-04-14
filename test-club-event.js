@@ -1,5 +1,5 @@
-// Test script to create an event as club organizer
-const API_URL = 'http://localhost:5000/api';
+﻿// Test script to create an event as club organizer
+const API_URL = 'https://connectcamp.onrender.com/api';
 
 async function makeRequest(method, endpoint, body = null, token = null) {
     const options = {
@@ -44,14 +44,14 @@ async function testClubEventCreation() {
         });
 
         const token = loginData.token;
-        console.log('✅ Login successful');
+        console.log('âœ… Login successful');
         console.log(`Token: ${token.substring(0, 20)}...\n`);
 
         // Step 2: Get available venues
         console.log('2. Fetching available venues...');
         const venues = await makeRequest('GET', '/venues', null, token);
 
-        console.log(`✅ Found ${venues.length} venues`);
+        console.log(`âœ… Found ${venues.length} venues`);
         console.log(`Venues: ${venues.map(v => v.name).join(', ')}\n`);
 
         // Step 3: Create event
@@ -86,18 +86,19 @@ async function testClubEventCreation() {
 
         const event = await makeRequest('POST', '/events', eventData, token);
 
-        console.log('✅ Event created successfully!\n');
+        console.log('âœ… Event created successfully!\n');
         console.log('Event Details:');
         console.log(JSON.stringify(event, null, 2));
 
         return event;
     } catch (error) {
-        console.error('❌ Error:', error.message);
+        console.error('âŒ Error:', error.message);
         process.exit(1);
     }
 }
 
 testClubEventCreation().then(() => {
-    console.log('\n✅ Test completed successfully!');
+    console.log('\nâœ… Test completed successfully!');
     process.exit(0);
 });
+

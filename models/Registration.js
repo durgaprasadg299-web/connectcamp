@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+﻿const mongoose = require('mongoose');
 const QRCode = require('qrcode');
 const crypto = require('crypto');
 
@@ -51,7 +51,7 @@ registrationSchema.methods.generateShareableToken = function () {
 
 // Generate QR code
 registrationSchema.methods.generateQRCode = async function () {
-    const baseUrl = process.env.APP_URL || 'http://localhost:5000';
+    const baseUrl = process.env.APP_URL || 'https://connectcamp.onrender.com';
     const qrData = `${baseUrl}/verify-registration.html?token=${this.shareableToken}`;
 
     try {
@@ -69,4 +69,5 @@ registrationSchema.methods.generateQRCode = async function () {
 };
 
 module.exports = mongoose.model('Registration', registrationSchema);
+
 

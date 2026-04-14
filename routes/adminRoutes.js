@@ -1,4 +1,4 @@
-const express = require('express');
+﻿const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const { protect, authorize } = require('../middleware/authMiddleware');
@@ -40,3 +40,4 @@ router.put('/verify/:id', protect, authorize('admin'), async (req, res) => {
 });
 
 module.exports = router;
+

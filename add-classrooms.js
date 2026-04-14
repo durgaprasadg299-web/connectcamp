@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+﻿const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Venue = require('./models/Venue');
 
@@ -78,7 +78,7 @@ const addClassrooms = async () => {
 
         // Insert new classrooms
         const createdVenues = await Venue.insertMany(newClassrooms);
-        console.log(`✅ Successfully added ${createdVenues.length} classrooms`);
+        console.log(`âœ… Successfully added ${createdVenues.length} classrooms`);
 
         // Show summary
         const venues = await Venue.find({}).lean();
@@ -98,3 +98,4 @@ const addClassrooms = async () => {
 };
 
 addClassrooms();
+

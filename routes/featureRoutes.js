@@ -1,17 +1,26 @@
-const express = require('express');
+﻿const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const { protect, authorize } = require('../middleware/authMiddleware');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
-// Reuse upload config
-const storage = multer.diskStorage({
-    destination(req, file, cb) {
-        cb(null, 'uploads/');
-    },
-    filename(req, file, cb) {
-        cb(null, `ai-${Date.now()}${path.extname(file.originalname)}`);
-    },
+// Configure Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// Configure multer for Cloudinary uploads
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'ai-analysis',
+        allowed_formats: ['jpg', 'png', 'jpeg', 'gif'],
+        transformation: [{ width: 800, height: 600, crop: 'limit' }]
+    }
 });
 
 const upload = multer({ storage });
@@ -34,7 +43,7 @@ router.post('/analyze-space', protect, authorize('club'), upload.single('image')
                 'Ensure 2m distance between rows.',
                 'Add acoustic panels for better sound.'
             ],
-            imageUrl: `/uploads/${req.file.filename}`
+            imageUrl: req.file.path
         };
 
         // Simulate processing time
@@ -48,3 +57,4 @@ router.post('/analyze-space', protect, authorize('club'), upload.single('image')
 });
 
 module.exports = router;
+

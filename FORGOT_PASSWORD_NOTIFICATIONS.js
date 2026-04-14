@@ -1,4 +1,4 @@
-// ============================================================================
+﻿// ============================================================================
 // PASSWORD RESET WITH NOTIFICATION SYSTEM
 // Add this code to routes/authRoutes.js to implement notifications
 // ============================================================================
@@ -40,7 +40,7 @@ try {
   await Notification.create({
     userId: user._id,
     type: 'password_reset_success',
-    title: '🔐 Password Updated Successfully',
+    title: 'ðŸ” Password Updated Successfully',
     message: 'Your password has been successfully reset.',
     read: false,
     createdAt: new Date()
@@ -66,7 +66,7 @@ const notificationMessage = {
   type: 'password_reset_success',
   category: 'security',
   priority: 'high',
-  title: '🔐 Password Changed',
+  title: 'ðŸ” Password Changed',
   message: 'Your password was successfully changed. If this wasn\'t you, contact support immediately.',
   details: {
     action: 'password_reset',
@@ -112,7 +112,7 @@ const sendNotification = async (userId, title, message) => {
 // Usage:
 sendNotification(
   user._id,
-  '✅ Password Reset Complete',
+  'âœ… Password Reset Complete',
   'Your password has been updated successfully. You can now log in with your new password.'
 );
 
@@ -127,7 +127,7 @@ const sendPasswordResetNotification = async (user) => {
   await Notification.create({
     userId: user._id,
     type: 'password_reset_success',
-    title: '🔐 Password Updated',
+    title: 'ðŸ” Password Updated',
     message: 'Your password has been successfully reset.',
     read: false
   });
@@ -195,7 +195,7 @@ router.post('/reset-password', async (req, res) => {
       await Notification.create({
         userId: user._id,
         type: 'password_reset_success',
-        title: '🔐 Password Updated Successfully',
+        title: 'ðŸ” Password Updated Successfully',
         message: 'Your password has been successfully reset. If you did not do this, please contact support immediately.',
         read: false,
         createdAt: new Date(),
@@ -335,7 +335,7 @@ function showNotificationBanner(notification) {
       <h4>${notification.title}</h4>
       <p>${notification.message}</p>
     </div>
-    <button class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
+    <button class="close-btn" onclick="this.parentElement.style.display='none'">Ã—</button>
   `;
   document.body.insertBefore(banner, document.body.firstChild);
   
@@ -375,13 +375,14 @@ if (process.env.ENABLE_AUDIT_LOG === 'true') {
  * ============================================================================
  * SUMMARY: What this file shows
  * 
- * ✅ How to add notifications to password reset
- * ✅ Different notification options (simple, comprehensive, with audit)
- * ✅ Notification model schema
- * ✅ API endpoints for retrieving notifications
- * ✅ Frontend integration example
- * ✅ Audit trail logging
+ * âœ… How to add notifications to password reset
+ * âœ… Different notification options (simple, comprehensive, with audit)
+ * âœ… Notification model schema
+ * âœ… API endpoints for retrieving notifications
+ * âœ… Frontend integration example
+ * âœ… Audit trail logging
  * 
  * Choose the option that best fits your needs!
  * ============================================================================
  */
+

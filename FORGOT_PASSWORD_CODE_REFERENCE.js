@@ -1,4 +1,4 @@
-// ============================================================================
+﻿// ============================================================================
 // FORGOT PASSWORD FEATURE - QUICK CODE REFERENCE
 // ============================================================================
 
@@ -143,13 +143,13 @@ document.getElementById('forgotPasswordForm').addEventListener('submit', async (
 
     messageContainer.innerHTML = `
       <div class="alert alert-success">
-        ✓ Password reset link sent to <strong>${email}</strong>
+        âœ“ Password reset link sent to <strong>${email}</strong>
       </div>
     `;
   } catch (error) {
     messageContainer.innerHTML = `
       <div class="alert alert-error">
-        ✗ ${error.message}
+        âœ— ${error.message}
       </div>
     `;
   }
@@ -219,17 +219,17 @@ document.getElementById('password').addEventListener('input', (e) => {
  */
 
 // 1. Request password reset:
-// curl -X POST http://localhost:5000/api/auth/forgot-password \
+// curl -X POST https://connectcamp.onrender.com/api/auth/forgot-password \
 //   -H "Content-Type: application/json" \
 //   -d '{"email":"test@example.com"}'
 
 // 2. Verify token:
-// curl -X POST http://localhost:5000/api/auth/verify-reset-token \
+// curl -X POST https://connectcamp.onrender.com/api/auth/verify-reset-token \
 //   -H "Content-Type: application/json" \
 //   -d '{"token":"YOUR_TOKEN_HERE","email":"test@example.com"}'
 
 // 3. Reset password:
-// curl -X POST http://localhost:5000/api/auth/reset-password \
+// curl -X POST https://connectcamp.onrender.com/api/auth/reset-password \
 //   -H "Content-Type: application/json" \
 //   -d '{\
 //     "token":"YOUR_TOKEN_HERE",\
@@ -250,7 +250,7 @@ try {
   await Notification.create({
     userId: user._id,
     type: 'password_reset_success',
-    title: '🔐 Password Updated Successfully',
+    title: 'ðŸ” Password Updated Successfully',
     message: 'Your password has been successfully reset.',
     read: false
   });
@@ -386,30 +386,30 @@ CLIENT_URL=https://yourdomain.com
  * ============================================================================
  */
 
-// ❌ DON'T: Store plain reset token in database
+// âŒ DON'T: Store plain reset token in database
 // const user = await User.findOne({ resetPasswordToken: token });
 
-// ✅ DO: Hash token before comparison
+// âœ… DO: Hash token before comparison
 // const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
 // const user = await User.findOne({ resetPasswordToken: hashedToken });
 
-// ❌ DON'T: Send reset token directly in response
+// âŒ DON'T: Send reset token directly in response
 // res.json({ token, resetLink });
 
-// ✅ DO: Only send success message, include token in URL only
+// âœ… DO: Only send success message, include token in URL only
 // res.json({ message: 'Success' });
 
-// ❌ DON'T: Set expiration too long or too short
+// âŒ DON'T: Set expiration too long or too short
 // DON'T: 5 minutes (too short for slow email)
 // DON'T: 24 hours (security risk)
 
-// ✅ DO: Use 1 hour (industry standard)
+// âœ… DO: Use 1 hour (industry standard)
 // user.resetPasswordExpires = Date.now() + 60 * 60 * 1000;
 
-// ❌ DON'T: Allow weak passwords
+// âŒ DON'T: Allow weak passwords
 // if (password.length > 0) { ...
 
-// ✅ DO: Enforce strong password requirements
+// âœ… DO: Enforce strong password requirements
 // if (password.length < 6) { throw error; }
 
 /**
@@ -418,15 +418,15 @@ CLIENT_URL=https://yourdomain.com
  * ============================================================================
  */
 
-// ✅ Routes added to authRoutes.js
-// ✅ Crypto module imported
-// ✅ User model updated with reset fields
-// ✅ forgot-password.html created
-// ✅ reset-password.html created
-// ✅ login.html has "Forgot Password?" link
-// ✅ Server restarted
-// ✅ Database connected
-// ✅ No syntax errors in console
+// âœ… Routes added to authRoutes.js
+// âœ… Crypto module imported
+// âœ… User model updated with reset fields
+// âœ… forgot-password.html created
+// âœ… reset-password.html created
+// âœ… login.html has "Forgot Password?" link
+// âœ… Server restarted
+// âœ… Database connected
+// âœ… No syntax errors in console
 
 /**
  * ============================================================================
@@ -435,26 +435,26 @@ CLIENT_URL=https://yourdomain.com
  */
 
 // routes/authRoutes.js
-//   ├── POST /api/auth/forgot-password
-//   ├── POST /api/auth/reset-password
-//   └── POST /api/auth/verify-reset-token
+//   â”œâ”€â”€ POST /api/auth/forgot-password
+//   â”œâ”€â”€ POST /api/auth/reset-password
+//   â””â”€â”€ POST /api/auth/verify-reset-token
 
 // models/User.js
-//   ├── resetPasswordToken
-//   └── resetPasswordExpires
+//   â”œâ”€â”€ resetPasswordToken
+//   â””â”€â”€ resetPasswordExpires
 
 // public/
-//   ├── login.html (updated - has link)
-//   ├── forgot-password.html (NEW)
-//   └── reset-password.html (NEW)
+//   â”œâ”€â”€ login.html (updated - has link)
+//   â”œâ”€â”€ forgot-password.html (NEW)
+//   â””â”€â”€ reset-password.html (NEW)
 
 // Documentation/
-//   ├── README_FORGOT_PASSWORD.md
-//   ├── FORGOT_PASSWORD_FEATURE.md
-//   ├── FORGOT_PASSWORD_QUICK_TEST.md
-//   ├── FORGOT_PASSWORD_IMPLEMENTATION.js
-//   ├── FORGOT_PASSWORD_NOTIFICATIONS.js
-//   └── This file
+//   â”œâ”€â”€ README_FORGOT_PASSWORD.md
+//   â”œâ”€â”€ FORGOT_PASSWORD_FEATURE.md
+//   â”œâ”€â”€ FORGOT_PASSWORD_QUICK_TEST.md
+//   â”œâ”€â”€ FORGOT_PASSWORD_IMPLEMENTATION.js
+//   â”œâ”€â”€ FORGOT_PASSWORD_NOTIFICATIONS.js
+//   â””â”€â”€ This file
 
 /**
  * ============================================================================
@@ -463,19 +463,20 @@ CLIENT_URL=https://yourdomain.com
  */
 
 // Before deploying:
-// ✅ Set JWT_SECRET in .env (different from development)
-// ✅ Set CLIENT_URL to production domain
-// ✅ Set up email service (Gmail, SendGrid, AWS SES)
-// ✅ Enable HTTPS (required for security)
-// ✅ Add rate limiting to password reset endpoints
-// ✅ Add CSRF protection if needed
-// ✅ Test with real email service
-// ✅ Set NODE_ENV=production
-// ✅ Monitor password reset attempts
-// ✅ Review security logs
+// âœ… Set JWT_SECRET in .env (different from development)
+// âœ… Set CLIENT_URL to production domain
+// âœ… Set up email service (Gmail, SendGrid, AWS SES)
+// âœ… Enable HTTPS (required for security)
+// âœ… Add rate limiting to password reset endpoints
+// âœ… Add CSRF protection if needed
+// âœ… Test with real email service
+// âœ… Set NODE_ENV=production
+// âœ… Monitor password reset attempts
+// âœ… Review security logs
 
 /**
  * ============================================================================
  * THAT'S IT! Ready to use!
  * ============================================================================
  */
+

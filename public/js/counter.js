@@ -1,4 +1,4 @@
-// ============================================
+﻿// ============================================
 // ANIMATED COUNTER UTILITY
 // For counting up statistics with smooth easing
 // ============================================
@@ -71,3 +71,4 @@ if (document.readyState === 'loading') {
 // Export for manual use
 window.animateCounter = animateCounter;
 window.initCounters = initCounters;
+

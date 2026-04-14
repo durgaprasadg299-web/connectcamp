@@ -1,11 +1,11 @@
-# Forgot Password & Reset Password Feature
+﻿# Forgot Password & Reset Password Feature
 
 ## Overview
 Complete password reset feature with token-based verification, email notifications, and password strength meter.
 
 ## Flow Diagram
 ```
-1. User on Login Page → Clicks "Forgot Password?"
+1. User on Login Page â†’ Clicks "Forgot Password?"
 2. Goes to forgot-password.html
 3. Enters email and clicks "Send Reset Link"
 4. Backend (POST /api/auth/forgot-password):
@@ -14,7 +14,7 @@ Complete password reset feature with token-based verification, email notificatio
    - Sets token expiration (1 hour)
    - Sends reset link via email
 5. User receives email with reset link containing token
-6. User clicks link → Goes to reset-password.html?token=XXX&email=user@email.com
+6. User clicks link â†’ Goes to reset-password.html?token=XXX&email=user@email.com
 7. Token is verified (POST /api/auth/verify-reset-token)
 8. User enters new password
 9. Form submits (POST /api/auth/reset-password):
@@ -221,21 +221,21 @@ CLIENT_URL=http://localhost:3000 # or your production URL
 
 ## Features
 
-### ✅ Security Features
+### âœ… Security Features
 - **Token-based verification**: Generates secure, cryptographically random tokens
 - **Token expiration**: Reset links expire after 1 hour
 - **Secure token storage**: Tokens are hashed in the database
 - **Email verification**: Ensures user has access to their registered email
 - **Password hashing**: Uses bcrypt to hash new passwords
 
-### ✅ User Experience Features
+### âœ… User Experience Features
 - **Real-time password strength meter**: Shows password strength as user types
 - **Form validation**: Checks for matching passwords and minimum length
 - **Auto-redirect**: After successful reset, automatically redirects to login
 - **Clear messaging**: Success and error messages for all operations
 - **Beautiful UI**: Matches existing design with animations and gradients
 
-### ✅ Error Handling
+### âœ… Error Handling
 - Non-existent emails handled gracefully
 - Expired tokens detected and reported
 - Invalid token format rejected
@@ -361,3 +361,4 @@ await Notification.create({
 - Reset tokens are stored as SHA256 hashes for security
 - Email sending is currently logged to console in development mode
 - All endpoints have proper error handling and validation
+

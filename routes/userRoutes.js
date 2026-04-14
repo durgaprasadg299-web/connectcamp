@@ -1,4 +1,4 @@
-const express = require('express');
+﻿const express = require('express');
 const router = express.Router();
 const Registration = require('../models/Registration');
 const { protect } = require('../middleware/authMiddleware');
@@ -19,3 +19,4 @@ router.get('/registrations', protect, async (req, res) => {
 });
 
 module.exports = router;
+

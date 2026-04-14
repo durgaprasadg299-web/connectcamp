@@ -1,4 +1,4 @@
-const cron = require('node-cron');
+﻿const cron = require('node-cron');
 const Event = require('../models/Event');
 const Registration = require('../models/Registration');
 const Notification = require('../models/Notification');
@@ -59,3 +59,4 @@ cron.schedule('0 * * * *', async () => {
 console.log('[Event Lifecycle Job] Scheduled to run every hour');
 
 module.exports = {};
+

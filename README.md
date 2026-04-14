@@ -1,30 +1,30 @@
-# 🎓 Campus Connect Lite
+﻿# ðŸŽ“ Campus Connect Lite
 
 A comprehensive event management system for educational institutions that connects students, clubs, and administrators in a seamless platform for organizing and participating in campus events.
 
-## ✨ Features
+## âœ¨ Features
 
-### 👨‍🎓 Student Features
+### ðŸ‘¨â€ðŸŽ“ Student Features
 - **User Registration & Authentication**: Secure signup and login with email validation
 - **Event Discovery**: Browse and view all campus events
 - **Event Registration**: Register for events with ticket verification
 - **Interactive Dashboard**: Personal dashboard with registered events
 - **Real-time Notifications**: Get updates about event changes and registrations
 
-### 🏛️ Club Features
+### ðŸ›ï¸ Club Features
 - **Club Registration**: Dedicated signup process for campus clubs
 - **Event Creation**: Create and manage events with detailed information
 - **AI Event Analyzer**: Intelligent analysis for event planning and optimization
 - **2D Layout Planner**: Visual planning tool for event layouts
 - **Poster Upload**: Upload event posters and promotional materials
 
-### 👨‍💼 Admin Features
+### ðŸ‘¨â€ðŸ’¼ Admin Features
 - **User Management**: View and manage all users (students, clubs, admins)
 - **Club Verification**: Verify and approve club registrations
 - **System Oversight**: Monitor platform activity and event management
 - **Data Analytics**: Access to system-wide statistics and reports
 
-## 🛠️ Tech Stack
+## ðŸ› ï¸ Tech Stack
 
 ### Backend
 - **Node.js** - Runtime environment
@@ -45,7 +45,7 @@ A comprehensive event management system for educational institutions that connec
 - **GitHub** - Code repository
 - **MongoDB Compass** - Database management
 
-## 🚀 Installation & Setup
+## ðŸš€ Installation & Setup
 
 ### Prerequisites
 - Node.js (v14 or higher)
@@ -88,29 +88,29 @@ A comprehensive event management system for educational institutions that connec
    ```
 
 6. **Access the Application**
-   - Open browser to `http://localhost:5000`
+   - Open browser to `https://connectcamp.onrender.com`
    - Register as Student, Club, or Admin
 
-## 📁 Project Structure
+## ðŸ“ Project Structure
 
 ```
 campus-connect-lite/
-├── config/              # Database configuration
-├── middleware/          # Authentication middleware
-├── models/              # Mongoose schemas
-├── public/              # Static files (HTML, CSS, JS)
-│   ├── css/            # Stylesheets
-│   └── js/             # Client-side JavaScript
-├── routes/             # API endpoints
-├── uploads/            # File uploads directory
-├── .env.example        # Environment variables template
-├── .gitignore         # Git ignore rules
-├── package.json       # Dependencies and scripts
-├── server.js          # Main application entry point
-└── README.md          # Project documentation
+â”œâ”€â”€ config/              # Database configuration
+â”œâ”€â”€ middleware/          # Authentication middleware
+â”œâ”€â”€ models/              # Mongoose schemas
+â”œâ”€â”€ public/              # Static files (HTML, CSS, JS)
+â”‚   â”œâ”€â”€ css/            # Stylesheets
+â”‚   â””â”€â”€ js/             # Client-side JavaScript
+â”œâ”€â”€ routes/             # API endpoints
+â”œâ”€â”€ uploads/            # File uploads directory
+â”œâ”€â”€ .env.example        # Environment variables template
+â”œâ”€â”€ .gitignore         # Git ignore rules
+â”œâ”€â”€ package.json       # Dependencies and scripts
+â”œâ”€â”€ server.js          # Main application entry point
+â””â”€â”€ README.md          # Project documentation
 ```
 
-## 🔧 API Endpoints
+## ðŸ”§ API Endpoints
 
 ### Authentication Routes
 - `POST /api/auth/register` - User registration
@@ -133,7 +133,7 @@ campus-connect-lite/
 - `GET /api/notifications` - Get user notifications
 - `POST /api/notifications` - Create notification
 
-## 🔒 Security Features
+## ðŸ”’ Security Features
 
 - **Email Validation**: Prevents invalid email registrations
 - **Password Hashing**: Secure password storage with bcrypt
@@ -141,19 +141,19 @@ campus-connect-lite/
 - **Input Validation**: Server-side validation for all inputs
 - **Environment Variables**: Sensitive data stored securely
 
-## 🧪 Testing
+## ðŸ§ª Testing
 
 ### Manual Testing
-1. **Student Flow**: Register → Login → Browse Events → Register for Event
-2. **Club Flow**: Register → Login → Create Event → Upload Poster → Use AI Analyzer
-3. **Admin Flow**: Register → Login → View Users → Verify Clubs
+1. **Student Flow**: Register â†’ Login â†’ Browse Events â†’ Register for Event
+2. **Club Flow**: Register â†’ Login â†’ Create Event â†’ Upload Poster â†’ Use AI Analyzer
+3. **Admin Flow**: Register â†’ Login â†’ View Users â†’ Verify Clubs
 
 ### API Testing
 - Use tools like Postman or Thunder Client
 - Test all endpoints with appropriate authentication
 - Verify error handling and validation
 
-## 🚀 Deployment
+## ðŸš€ Deployment
 
 ### Environment Setup
 1. Set up production MongoDB Atlas cluster
@@ -166,7 +166,7 @@ npm install --production
 npm start
 ```
 
-## 🤝 Contributing
+## ðŸ¤ Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
@@ -174,15 +174,15 @@ npm start
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
+## ðŸ“ License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Authors
+## ðŸ‘¥ Authors
 
 - **Sujitha** - *Full Stack Developer* - [GitHub](https://github.com/Sujitha-1401)
 
-## 🙏 Acknowledgments
+## ðŸ™ Acknowledgments
 
 - Thanks to the MongoDB Atlas team for reliable database services
 - Inspired by campus event management needs
@@ -190,4 +190,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**⭐ Star this repository if you found it helpful!**
+**â­ Star this repository if you found it helpful!**

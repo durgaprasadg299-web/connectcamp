@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+﻿const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Venue = require('./models/Venue');
 
@@ -114,7 +114,7 @@ const seedVenues = async () => {
 
         // Insert new venues
         const createdVenues = await Venue.insertMany(newVenues);
-        console.log(`✅ Successfully added ${createdVenues.length} venues`);
+        console.log(`âœ… Successfully added ${createdVenues.length} venues`);
 
         // Show summary
         const venues = await Venue.find({}).lean();
@@ -135,3 +135,4 @@ const seedVenues = async () => {
 };
 
 seedVenues();
+

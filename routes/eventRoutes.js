@@ -1,4 +1,4 @@
-const express = require('express');
+﻿const express = require('express');
 const router = express.Router();
 const Event = require('../models/Event');
 const Venue = require('../models/Venue');
@@ -6,14 +6,23 @@ const Booking = require('../models/Booking');
 const { protect, authorize } = require('../middleware/authMiddleware');
 const multer = require('multer');
 const path = require('path');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
-// Configure multer for file uploads
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/uploads/');
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname));
+// Configure Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// Configure multer for Cloudinary uploads
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'event-posters',
+        allowed_formats: ['jpg', 'png', 'jpeg', 'gif'],
+        transformation: [{ width: 800, height: 600, crop: 'limit' }]
     }
 });
 
@@ -246,7 +255,7 @@ router.post('/', protect, authorize('club', 'admin'), upload.single('poster'), a
             category: category || 'General',
             organizer: req.user._id,
             venue: venue._id,
-            poster: req.file ? `/uploads/${req.file.filename}` : '',
+            poster: req.file ? req.file.path : '',
             status: 'upcoming',
             isExpired: false,
             expiresAt
@@ -463,7 +472,7 @@ router.post('/:id/register', protect, authorize('student'), async (req, res) => 
                 year: registration.year,
                 qrCode: registration.qrCode,
                 shareableToken: registration.shareableToken,
-                shareableLink: `${process.env.APP_URL || 'http://localhost:5000'}/verify-registration.html?token=${registration.shareableToken}`,
+                shareableLink: `${process.env.APP_URL || 'https://connectcamp.onrender.com'}/verify-registration.html?token=${registration.shareableToken}`,
                 event: registration.event,
                 registeredAt: registration.registeredAt
             }
@@ -516,3 +525,4 @@ router.get('/:id/attendees', protect, async (req, res) => {
 });
 
 module.exports = router;
+

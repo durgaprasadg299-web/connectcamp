@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -396,8 +396,8 @@
                     <img src="${event.poster || 'https://via.placeholder.com/300x180?text=No+Poster'}" alt="${event.title}">
                     <h3>${event.title}</h3>
                     <div class="event-meta">
-                        <p>📅 ${new Date(event.date).toLocaleDateString()} at ${event.time}</p>
-                        <p>📍 ${event.location}</p>
+                        <p>ðŸ“… ${new Date(event.date).toLocaleDateString()} at ${event.time}</p>
+                        <p>ðŸ“ ${event.location}</p>
                     </div>
                     ${isRegistration ? '<span style="background:var(--accent-color); padding: 4px 8px; border-radius:4px; font-size:0.8rem; color:#000; font-weight:bold;">Registered</span>' : ''}
                     <button onclick="viewEvent('${event._id}')" class="btn" style="width: 100%; margin-top: 15px;">View Details</button>

@@ -1,4 +1,4 @@
-const express = require('express');
+﻿const express = require('express');
 const router = express.Router();
 const Notification = require('../models/Notification');
 const { protect } = require('../middleware/authMiddleware');
@@ -146,3 +146,4 @@ router.get('/unread-count', protect, async (req, res) => {
 });
 
 module.exports = router;
+

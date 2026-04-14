@@ -1,4 +1,4 @@
-// ============================================================================
+﻿// ============================================================================
 // QUICK IMPLEMENTATION GUIDE - FORGOT PASSWORD FEATURE
 // ============================================================================
 
@@ -94,29 +94,29 @@ const sendPasswordResetEmail = async (email, resetToken) => {
  * STEP 5: User Flow Summary
  * 
  * LOGIN PAGE (/login.html)
- *   ↓
+ *   â†“
  *   Click "Forgot Password?" link
- *   ↓
+ *   â†“
  * FORGOT PASSWORD PAGE (/forgot-password.html)
- *   ↓
- *   Enter email → POST /api/auth/forgot-password
- *   ↓
+ *   â†“
+ *   Enter email â†’ POST /api/auth/forgot-password
+ *   â†“
  *   Email sent with reset link
- *   ↓
+ *   â†“
  * USER RECEIVES EMAIL
- *   ↓
+ *   â†“
  *   Click reset link
- *   ↓
+ *   â†“
  * RESET PASSWORD PAGE (/reset-password.html?token=XXX&email=user@email.com)
- *   ↓
+ *   â†“
  *   POST /api/auth/verify-reset-token (auto validation)
- *   ↓
+ *   â†“
  *   User enters new password
- *   ↓
+ *   â†“
  *   POST /api/auth/reset-password
- *   ↓
+ *   â†“
  * SUCCESS PAGE (Auto redirects to login after 3 seconds)
- *   ↓
+ *   â†“
  * LOGIN PAGE - User logs in with new password
  */
 
@@ -132,7 +132,7 @@ const Notification = require('../models/Notification');
 await Notification.create({
   userId: user._id,
   type: 'password_reset_success',
-  title: '🔐 Password Updated Successfully',
+  title: 'ðŸ” Password Updated Successfully',
   message: 'Your password has been successfully reset. If you did not do this, contact support immediately.',
   read: false,
   createdAt: new Date()
@@ -141,14 +141,14 @@ await Notification.create({
 /**
  * STEP 7: Security Checklist
  * 
- * ✅ Tokens expire after 1 hour
- * ✅ Tokens are hashed before storage
- * ✅ Passwords are hashed with bcrypt
- * ✅ Email validation is performed
- * ✅ Token verification happens before reset
- * ✅ Old reset tokens are cleared after successful reset
- * ✅ Passwords must be 6+ characters
- * ✅ Rate limiting can be added for security
+ * âœ… Tokens expire after 1 hour
+ * âœ… Tokens are hashed before storage
+ * âœ… Passwords are hashed with bcrypt
+ * âœ… Email validation is performed
+ * âœ… Token verification happens before reset
+ * âœ… Old reset tokens are cleared after successful reset
+ * âœ… Passwords must be 6+ characters
+ * âœ… Rate limiting can be added for security
  */
 
 /**
@@ -158,17 +158,17 @@ await Notification.create({
  */
 
 // Test 1: Request password reset
-// curl -X POST http://localhost:5000/api/auth/forgot-password \
+// curl -X POST https://connectcamp.onrender.com/api/auth/forgot-password \
 //   -H "Content-Type: application/json" \
 //   -d '{"email":"user@example.com"}'
 
 // Test 2: Verify reset token
-// curl -X POST http://localhost:5000/api/auth/verify-reset-token \
+// curl -X POST https://connectcamp.onrender.com/api/auth/verify-reset-token \
 //   -H "Content-Type: application/json" \
 //   -d '{"token":"abc123","email":"user@example.com"}'
 
 // Test 3: Reset password
-// curl -X POST http://localhost:5000/api/auth/reset-password \
+// curl -X POST https://connectcamp.onrender.com/api/auth/reset-password \
 //   -H "Content-Type: application/json" \
 //   -d '{
 //     "token":"abc123",
@@ -242,3 +242,4 @@ await Notification.create({
  *    - Clears reset token
  *    - Returns success message
  */
+
